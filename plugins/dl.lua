@@ -2,7 +2,7 @@ do
  
  local function run(msg, matches)
    if not is_sudo(msg) then
-     return "شما دسترسی ارسال فایل به سرور را ندارید\nSudo : @ninaco"
+     return "only for sudo"
    end
    local receiver = get_receiver(msg)
    if matches[1] == 'dl' then
@@ -23,7 +23,7 @@ do
    end
    
    if matches[1] == 'list' and matches[2] == 'files' then
-     return 'لیستی یافت نشد'
+     return 'i cant find list'
      --send_document(receiver, "./media/files/files.txt", ok_cb, false)
    end
  end
