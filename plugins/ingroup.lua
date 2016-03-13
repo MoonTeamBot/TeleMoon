@@ -204,6 +204,34 @@ function show_group_settingsmod(msg, target)
     if data[tostring(target)]['settings']['leave_ban'] then
     	leave_ban = data[tostring(target)]['settings']['leave_ban']
    	end
+    local lock_chat = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_chat'] then
+        lock_chat = data[tostring(msg.to.id)]['settings']['lock_chat']
+        end
+    local lock_emoji = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_emoji'] then
+        lock_emoji = data[tostring(msg.to.id)]['settings']['lock_emoji']
+        end
+    local lock_media = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_media'] then
+        lock_media = data[tostring(msg.to.id)]['settings']['lock_media']
+        end
+    local lock_join= "no"
+    if data[tostring(msg.to.id)]['settings']['lock_join'] then
+        lock_join = data[tostring(msg.to.id)]['settings']['lock_join']
+        end
+    local lock_eng = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_eng'] then
+        lock_eng = data[tostring(msg.to.id)]['settings']['lock_eng']
+        end
+    local lock_badw = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_badw'] then
+        lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
+        end
+    local lock_tag = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_tag'] then
+        lock_tag = data[tostring(msg.to.id)]['settings']['lock_tag']
+        end
 	if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['lock_link'] then
 			data[tostring(target)]['settings']['lock_link'] = 'no'
@@ -225,7 +253,7 @@ function show_group_settingsmod(msg, target)
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "⚙ Group settings:\n______________________________\n🔹Lock group english : "..lock_eng.."\n🔸Lock group tag : "..lock_tag.."\n🔹Lock group media : "..lock_media.."\n🔸Lock group join : "..lock_join.."\n🔹Lock group badwords : "..lock_badw.."\n🔸Lock group chat : "..lock_chat.."\n🔹Lock group name : "..settings.lock_name.."\n🔸Lock group photo : "..settings.lock_photo.."\n🔹Lock group member : "..settings.lock_member.."\n🔸Lock group leave : "..leave_ban.."\n🔹flood sensitivity : "..NUM_MSG_MAX.."\n🔸Bot protection : "..bots_protection.."\n🔹Lock group links : "..settings.lock_link.."\n🔸Lock group RTL: "..settings.lock_rtl.."\n🔹Lock group sticker: "..settings.lock_sticker.."\n🔸Public: "..settings.public"\n______________________________\nbot version:5.1\n@CycloneTeam join us
+  local text = "⚙ Group settings:\n______________________________\n🔸Lock group emoji : "..lock_emoji.."\n🔹Lock group english : "..lock_eng.."\n🔸Lock group tag : "..lock_tag.."\n🔹Lock group media : "..lock_media.."\n🔸Lock group join : "..lock_join.."\n🔹Lock group badwords : "..lock_badw.."\n🔸Lock group chat : "..lock_chat.."\n🔹Lock group name : "..settings.lock_name.."\n🔸Lock group photo : "..settings.lock_photo.."\n🔹Lock group member : "..settings.lock_member.."\n🔸Lock group leave : "..leave_ban.."\n🔹flood sensitivity : "..NUM_MSG_MAX.."\n🔸Bot protection : "..bots_protection.."\n🔹Lock group links : "..settings.lock_link.."\n🔸Lock group RTL: "..settings.lock_rtl.."\n🔹Lock group sticker: "..settings.lock_sticker.."\n🔸Public: "..settings.public"\n______________________________\nbot version:5.1\n@CycloneTeam join us
   return text
 end
 
