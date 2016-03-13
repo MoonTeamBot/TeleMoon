@@ -1567,6 +1567,34 @@ end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
 			return lock_group_bots(msg, data, target)
 		end
+                if matches[2] == 'chat' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat ")
+                        return lock_group_chat(msg, data, target)
+                end
+                if matches[2] == 'emoji' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked emoji ")
+                        return lock_group_emoji(msg, data, target)
+                end
+                if matches[2] == 'media' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked media ")
+                        return lock_group_media(msg, data, target)
+                end
+                if matches[2] == 'eng' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked eng ")
+                        return lock_group_eng(msg, data, target)
+                end
+                if matches[2] == 'tag' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked tag ")
+                        return lock_group_tag(msg, data, target)
+                end
+                if matches[2] == 'badw' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked badw ")
+                        return lock_group_badw(msg, data, target)
+                end
+                if matches[2] == 'join' or matches[2] == 'j' then
+                        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked join ")
+                        return lock_group_join(msg, data, target)
+                end
 		if matches[2] == 'leave' then
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked leaving ")
 			return lock_group_leave(msg, data, target)
