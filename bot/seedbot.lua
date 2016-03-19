@@ -235,7 +235,7 @@ function create_config( )
     },
     sudo_users = {90285047,184061737},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[CycloneTG v5.1
+    about_text = [[Gem v1.2
 An advanced administration bot based on TG-CLI written in Lua
 
 
@@ -250,8 +250,8 @@ Amir
 Reza
 
 Our channels
-@CycloneTeam
-@CycloneCh
+@GemTeam
+@GemGroupCh
 ]],
     help_text_realm = [[
 Realm Commands:
