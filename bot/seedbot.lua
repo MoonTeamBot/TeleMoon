@@ -58,9 +58,9 @@ function msg_valid(msg)
   end
 
   -- Before bot was started
-  if msg.date < os.time() - 5 then
-    print('\27[36mNot valid: old msg\27[39m')
-    return false
+  if msg.date < now then
+    print('\27[36mNot valid: old msg\27[39m')
+    return false
   end
 
   if msg.unread == 0 then
