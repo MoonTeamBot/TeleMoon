@@ -1891,7 +1891,7 @@ end
       if not is_owner(msg) then
         return "For owner only!"
       end
-      data[tostring['rem_owner'] = matches[2]
+      data[tostring]['rem_owner'] = matches[2]
       save_data(_config.moderation.data, data)
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] rem ["..matches[2].."] as owner")
       local text = matches[2].." removed as owner"
@@ -2055,7 +2055,7 @@ return {
   "^[#!/](set) ([^%s]+) (.*)$",
   "^[#!/](lock) (.*)$",
   "^[#!/](setowner) (%d+)$",
-  "^[#!/](remowner) (%d+)$",
+  "^[#!/](remowner)$",
   "^[#!/](setowner)",
   "^[#!/](owner)$",
   "^[#!/](res) (.*)$",
@@ -2094,7 +2094,7 @@ return {
   "^([Ss]et) ([^%s]+) (.*)$",
   "^([Ll]ock) (.*)$",
   "^([Ss]etowner) (%d+)$",
-  "^([Rr]emowner) (%d+)$",
+  "^([Rr]emowner)$",
   "^([Ss]etowner)",
   "^([Oo]wner)$",
   "^([Rr]es) (.*)$",
