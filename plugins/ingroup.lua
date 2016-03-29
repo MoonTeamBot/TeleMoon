@@ -1887,16 +1887,6 @@ if msg.to.type == 'chat' then
       end
     end
 end
-      if matches[1] == 'remowner' and maches[2] then
-      if not is_owner(msg) then
-        return "For owner only!"
-      end
-      data[tostring(msg.to.id)]['set_owner'] = matches[2]
-      save_data(_config.membermod.data, data)
-      savelog(msg.to.id, name_log.." ["..msg.from.id.."] removed ["..matches[2].."] as owner")
-      local text = matches[2].." removed as owner"
-      return text
-    end
     if matches[1] == 'owner' then
       local group_owner = data[tostring(msg.to.id)]['set_owner']
       if not group_owner then
@@ -2055,7 +2045,6 @@ return {
   "^[#!/](set) ([^%s]+) (.*)$",
   "^[#!/](lock) (.*)$",
   "^[#!/](setowner) (%d+)$",
-  "^[#!/](remowner)$",
   "^[#!/](setowner)",
   "^[#!/](owner)$",
   "^[#!/](res) (.*)$",
@@ -2094,7 +2083,6 @@ return {
   "^([Ss]et) ([^%s]+) (.*)$",
   "^([Ll]ock) (.*)$",
   "^([Ss]etowner) (%d+)$",
-  "^([Rr]emowner) (%d+)$",
   "^([Ss]etowner)",
   "^([Oo]wner)$",
   "^([Rr]es) (.*)$",
