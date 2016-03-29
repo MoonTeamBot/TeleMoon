@@ -1887,14 +1887,14 @@ if msg.to.type == 'chat' then
       end
     end
 end
-      if matches[1] == 'remowner' and matches[2] then
+      if matches[1] == 'remowner' then
       if not is_owner(msg) then
         return "For owner only!"
       end
-      data[tostring]['rem_owner'] = matches[2]
-      save_data(_config.moderation.data, data)
-      savelog(msg.to.id, name_log.." [ rem ["..matches[2].."] as owner")
-      local text = matches[2].." removed as owner"
+      data[tostring(msg.to.id)]['rem_owner'] = matches[1]
+      save_data(_config.member.data, data)
+      savelog(msg.to.id, name_log.." ["..msg.from.id.."] remove ["..matches[1].."] as owner")
+      local text = matches[1].." removed as owner"
       return text
     end
     if matches[1] == 'owner' then
