@@ -1893,7 +1893,7 @@ end
       end
       data[tostring]['rem_owner'] = matches[2]
       save_data(_config.moderation.data, data)
-      savelog(msg.to.id, name_log.." ["..msg.from.id.."] rem ["..matches[2].."] as owner")
+      savelog(msg.to.id, name_log.." [ rem ["..matches[2].."] as owner")
       local text = matches[2].." removed as owner"
       return text
     end
