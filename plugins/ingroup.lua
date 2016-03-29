@@ -1887,7 +1887,7 @@ if msg.to.type == 'chat' then
       end
     end
 end
-      if matches[1] == 'setowner' and matches[2] then
+      if matches[1] == 'remowner' and matches[2] then
       if not is_owner(msg) then
         return "For owner only!"
       end
