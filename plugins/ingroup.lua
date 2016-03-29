@@ -1887,7 +1887,7 @@ if msg.to.type == 'chat' then
       end
     end
 end
-      if matches[1] == 'remowner' and not maches[2] then
+      if matches[1] == 'remowner' and maches[2] then
       if not is_owner(msg) then
         return "For owner only!"
       end
@@ -2094,7 +2094,7 @@ return {
   "^([Ss]et) ([^%s]+) (.*)$",
   "^([Ll]ock) (.*)$",
   "^([Ss]etowner) (%d+)$",
-  "^([Rr]emowner) (%d+)$",
+  "^([Rr]emowner)$",
   "^([Ss]etowner)",
   "^([Oo]wner)$",
   "^([Rr]es) (.*)$",
