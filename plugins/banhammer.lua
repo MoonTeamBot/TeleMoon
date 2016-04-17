@@ -146,7 +146,7 @@ local support_id = msg.from.id
     elseif matches[1]:lower() == 'id' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] used /id ")
-      return "👥Group name：" ..string.gsub(msg.to.print_name, "_", " ").. "\n🔺Group id: "..msg.to.id.. "\n🔻Your id: "..msg.from.id.. "telegram.me/"..msg.from.username
+      return "👥Group name：" ..string.gsub(msg.to.print_name, "_", " ").. "\n🔺Group id: "..msg.to.id.. "\n🔻Your id: "..msg.from.id.. "\n👤Your link:telegram.me/"..msg.from.username
     end
   end
   if matches[1]:lower() == 'kickme' and msg.to.type == "chat" then-- /kickme
