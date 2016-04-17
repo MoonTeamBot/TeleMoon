@@ -86,7 +86,7 @@ local service = msg.service
 local name_log = user_print_name(msg.from)
 if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel" then
 	if is_gbanned(msg.from.id) then
-        return 'You are globally banned.'
+        return 
 	end
     if matches[1] == 'join' then
 	local data = load_data(_config.moderation.data)
