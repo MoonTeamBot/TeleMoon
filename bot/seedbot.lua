@@ -235,12 +235,11 @@ function create_config( )
     },
     sudo_users = {90285047,184061737},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Gem v1.2
+    about_text = [[TeleFaceless v1.2
 An advanced administration bot based on TG-CLI written in Lua
 
 
 Admins
-@A1DIN[Founder,Developer,Manager]
 @MAKAN [Founder,Developer,Manager]
 @DILAN [Founder,Developer,Manager]
 
@@ -250,8 +249,7 @@ Amir
 Reza
 
 Our channels
-@GemTeam
-@GemGroupCh
+@FacelessTeam
 ]],
     help_text_realm = [[
 Realm Commands:
