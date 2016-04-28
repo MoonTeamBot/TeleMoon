@@ -146,7 +146,7 @@ local support_id = msg.from.id
     elseif matches[1]:lower() == 'id' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] used /id ")
-      return "👥Group name：" ..string.gsub(msg.to.print_name, "_", " ").. "\n🔺Group id: "..msg.to.id.. "\n🔻Your id: "..msg.from.id.. "\n👤Your link: telegram.me/"..msg.from.username
+      return "Group ID for " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id
     end
   end
   if matches[1]:lower() == 'kickme' and msg.to.type == "chat" then-- /kickme
@@ -238,7 +238,7 @@ local support_id = msg.from.id
 if matches[1]:lower() == 'kick' then
     if type(msg.reply_id)~="nil" and is_momod(msg) then
       if is_admin1(msg) then
-        local msgr = get_message(msg.reply_id,Kick_by_reply_admins, false)
+        msgr = get_message(msg.reply_id,Kick_by_reply_admins, false)
       else
         msgr = get_message(msg.reply_id,Kick_by_reply, false)
       end
@@ -254,7 +254,6 @@ if matches[1]:lower() == 'kick' then
 		end
     local user_id = matches[2]
     local chat_id = msg.to.id
-    print("sexy")
 		local print_name = user_print_name(msg.from):gsub("‮", "")
 		local name = print_name:gsub("_", "")
 		savelog(msg.to.id, name.." ["..msg.from.id.."] kicked user ".. matches[2])
@@ -342,21 +341,6 @@ return {
     "^[#!/]([Kk]ick) (.*)$",
     "^[#!/]([Uu]nban)$",
     "^[#!/]([Ii]d)$",
-    "^([Bb]anall) (.*)$",
-    "^([Bb]anall)$",
-    "^([Bb]anlist) (.*)$",
-    "^([Bb]anlist)$",
-    "^([Gg]banlist)$",
-	"^([Kk]ickme)",
-    "^([Kk]ick)$",
-	"^([Bb]an)$",
-    "^([Bb]an) (.*)$",
-    "^([Uu]nban) (.*)$",
-    "^([Uu]nbanall) (.*)$",
-    "^([Uu]nbanall)$",
-    "^([Kk]ick) (.*)$",
-    "^([Uu]nban)$",
-    "^([Ii]d)$",
     "^!!tgservice (.+)$"
   },
   run = run,
