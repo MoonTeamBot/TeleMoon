@@ -3,12 +3,12 @@ local makan = 90285047 --put your id here(BOT OWNER ID)
 
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
-  if msg.to.type == 'chat' then
-  hash = 'rank:variables' 
+  if msg.to.type == 'channel' then
+    hash = 'rank:variables'
   end
   if hash then
     redis:hset(hash, name, value)
-	return send_msg('chat#id'..msg.to.id, 'مقام کاربر ('..name..') به '..value..' تغییر داده شد ', ok_cb,  true)
+	return send_msg('channel#id'..msg.to.id, 'مقام کاربر ('..name..') به '..value..' تغییر داده شد ', ok_cb,  true)
   end
 end
 local function res_user_callback(extra, success, result) -- /info <username> function
@@ -21,8 +21,8 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
     local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
                ..'یوزر: '..Username..'\n'
                ..'ایدی کاربری : '..result.id..'\n\n'
-    hash = 'rank:variables'
-local value = redis:hget(hash, result.id)
+	local hash = 'rank:variables'
+	local value = redis:hget(hash, result.id)
     if not value then
 	 if result.id == tonumber(makan) then
 	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
@@ -43,7 +43,7 @@ local value = redis:hget(hash, result.id)
   local um_hash = 'msgs:'..result.id..':'..extra.chat2
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'\n@CycloneTG team'
+  text = text..''
   send_msg(extra.receiver, text, ok_cb,  true)
   else
 	send_msg(extra.receiver, extra.user..' نام کاربری مورد نظر یافت نشد.', ok_cb, false)
@@ -93,35 +93,35 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
 		if result.from.username then
 		   Username = '@'..result.from.username
 		   else
-		   Username = 'ندارد'
+		   Username = '----'
 		 end
-    local text = 'نام کامل : '..(result.from.first_name or '')..' '..(result.from.last_name or '')..'\n'
-               ..'یوزر: '..Username..'\n'
-               ..'ایدی کاربری : '..result.from.id..'\n\n'
-	local hash = 'rank:variables'
+  local text = 'نام : '..(result.from.first_name or '')..'\nفامیل :'..(result.from.last_name or '----')..'\n'
+               ..'یوزرنیم : '..Username..'\n'
+               ..'ایدی : '..result.from.peer_id..'\n\n'
+	local hash = 'مقام:'..result.to.id..':variables'
 		local value = redis:hget(hash, result.from.id)
 		 if not value then
-		    if result.from.id == tonumber(makan) then
-		       text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
-		     elseif is_admin2(result.from.id) then
-		       text = text..'مقام : ادمین ربات (Admin) \n\n'
-		     elseif is_owner2(result.from.id, result.to.id) then
-		       text = text..'مقام : مدیر کل گروه (Owner) \n\n'
-		     elseif is_momod2(result.from.id, result.to.id) then
-		       text = text..'مقام : مدیر گروه (Moderator) \n\n'
+		    if result.from.peer_id == tonumber(makan) then
+		       text = text..'مقام : مدیر کل ربات Executive Admin \n\n'
+		     elseif is_admin2(result.from.peer_id) then
+		       text = text..'مقام : ادمین Admin \n\n'
+		     elseif is_owner2(result.from.peer_id, result.to.peer_id) then
+		       text = text..'مقام : مدیر کل گروه Owner \n\n'
+		     elseif is_momod2(result.from.peer_id, result.to.peer_id) then
+		       text = text..'مقام : مدیر گروه Moderator \n\n'
 		 else
-		       text = text..'مقام : کاربر (Member) \n\n'
+		       text = text..'مقام : کاربر Member \n\n'
 			end
 		  else
 		   text = text..'مقام : '..value..'\n\n'
 		 end
-         local user_info = {}
-  local uhash = 'user:'..result.from.id
+         local user_info = {} 
+  local uhash = 'user:'..result.from.peer_id
   local user = redis:hgetall(uhash)
-  local um_hash = 'msgs:'..result.from.id..':'..result.to.id
+  local um_hash = 'msgs:'..result.from.peer_id..':'..result.to.peer_id
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'\n@CycloneTG team'
+  text = text..'@MoonTeam'
   send_msg(extra.receiver, text, ok_cb, true)
 end
 
@@ -132,10 +132,10 @@ end
 
 local function run(msg, matches)
  if matches[1]:lower() == 'setrank' then
-  local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
+  local hash = 'usecommands:'..msg.from.peer_id..':'..msg.to.peer_id
   redis:incr(hash)
   if not is_sudo(msg) then
-    return "only for sudo"
+    return "تنها برای صاحب ربات مجاز است"
   end
   local receiver = get_receiver(msg)
   local Reply = msg.reply_id
@@ -194,7 +194,7 @@ local function run(msg, matches)
 	 text = text..'نام گروه : '..msg.to.title..'\n'
      text = text..'ایدی گروه : '..msg.to.id
     end
-   text = text..'\n@CycloneTG team'
+	text = text..''
     return send_msg(receiver, text, ok_cb, true)
     end
   end
@@ -222,15 +222,19 @@ return {
 	'(Reply)!setrank <rank>: change members rank.',
   },
   patterns = {
-	"^[/!]([Ii][Nn][Ff][Oo])$",
-	"^[/!]([Ii][Nn][Ff][Oo]) (.*)$",
-	"^[/!]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (%d+) (.*)$",
-	"^[/!]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
+	"^[/!#]([Ii][Nn][Ff][Oo])$",
+	"^[/!#]([Ii][Nn][Ff][Oo])$",
+	"^[/!#]([Ii][Nn][Ff][Oo]) (.*)$",
+	"^[/!#]([Ii][Nn][Ff][Oo]) (.*)$",
+	"^[/!#]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (%d+) (.*)$",
+	"^[/!#]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
         "^([Ii][Nn][Ff][Oo])$",
+	"^([Ii][Nn][Ff][Oo])$",
+	"^([Ii][Nn][Ff][Oo]) (.*)$",
 	"^([Ii][Nn][Ff][Oo]) (.*)$",
 	"^([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (%d+) (.*)$",
-	"^([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",  
-},
+	"^([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
+  },
   run = run
 }
 
