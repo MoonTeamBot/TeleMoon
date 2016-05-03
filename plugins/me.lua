@@ -1,30 +1,31 @@
 do
 
 local function run(msg, matches)
-  if matches[1] == 'me' then
+  if matches[1]:lower() == 'me' or "wai" then
     if is_sudo(msg) then
-    send_document(get_receiver(msg), "./data/sudo.webp", ok_cb, false)
-      return "بابام هستی دیگه❤️"
+    send_document(get_receiver(msg), "./data/me/sudo.webp", ok_cb, false)
+      return "Your Rank is : SuDo"
     elseif is_admin(msg) then
-    send_document(get_receiver(msg), "./data/admin.webp", ok_cb, false)
-      return "ادمینم هستی دیگه💛"
+    send_document(get_receiver(msg), "./data/me/admin.webp", ok_cb, false)
+      return "Your Rank is : Admin"
     elseif is_owner(msg) then
-    send_document(get_receiver(msg), "./data/owner.webp", ok_cb, false)
-      return "مدیر اصلی گروه هستی دیگه💚"
+    send_document(get_receiver(msg), "./data/me/owner.webp", ok_cb, false)
+      return "Your Rank is : Owner"
     elseif is_momod(msg) then
-    send_document(get_receiver(msg), "./data/mod.webp", ok_cb, false)
-      return "مدیر گروه هستی دیگه💙"
+    send_document(get_receiver(msg), "./data/me/moderetion.webp", ok_cb, false)
+      return "Your Rank is : Mod"
     else
-    send_document(get_receiver(msg), "./data/member.webp", ok_cb, false)
-      return "کاربر عادی هستی دیگه💔"
-    end
+      send_document(get_receiver(msg), "./data/me/member.webp", ok_cb, false)
+      return "Your Rank is : member"
   end
+end
 end
 
 return {
   patterns = {
     "^[!/]([Mm]e)$",
-    "^([Mm]e)$"
+    "^([Mm]e)$",
+    "^([Ww]ai)$",
     },
   run = run
 }
