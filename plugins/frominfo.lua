@@ -9,7 +9,7 @@ return {
   usage = "",
   patterns = {
     "^[Ii]nfo$",
-    "^[/!#][Ii]nfo$",
+    "^![Ii]nfo$",
   },
   run = run
 }
