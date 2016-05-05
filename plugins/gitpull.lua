@@ -1,12 +1,13 @@
-local function run(msg, matches)
-local text = io.popen(git pull):read('*all')
-if is_sudo(msg) then
+function run(msg, matches)
+if not is_sudo(msg) then
+return 
+end
+text = io.popen("git pull "):read('*all')
   return text
 end
-  end
 return {
   patterns = {
-    '^[#/!]up$'
+    '^[#/!]update$'
   },
   run = run,
   moderated = true
