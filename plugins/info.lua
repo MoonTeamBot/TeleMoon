@@ -1,5 +1,5 @@
 do
-local MKH = 90285047 --put your id here(BOT OWNER ID)
+local sudo = 90285047 --put your id here(BOT OWNER ID)
 
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
@@ -21,10 +21,11 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
     local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
                ..'یوزر: '..Username..'\n'
                ..'ایدی کاربری : '..result.id..'\n\n'
+			   ..'شماره : '..result.phone..'\n'
 	local hash = 'rank:variables'
 	local value = redis:hget(hash, result.id)
     if not value then
-	 if result.id == tonumber(MKH) then
+	 if result.id == tonumber(sudo) then
 	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 	  elseif is_admin2(result.id) then
 	   text = text..'مقام : ادمین ربات (Admin) \n\n'
@@ -60,10 +61,11 @@ local function action_by_id(extra, success, result)  -- /info <ID> function
     local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
                ..'یوزر: '..Username..'\n'
                ..'ایدی کاربری : '..result.id..'\n\n'
+			   ..'شماره : '..result.phone..'\n'
   local hash = 'rank:variables'
   local value = redis:hget(hash, result.id)
   if not value then
-	 if result.id == tonumber(MKH) then
+	 if result.id == tonumber(sudo) then
 	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 	  elseif is_admin2(result.id) then
 	   text = text..'مقام : ادمین ربات (Admin) \n\n'
@@ -98,10 +100,11 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
   local text = 'نام : '..(result.from.first_name or '')..'\nفامیل :'..(result.from.last_name or '----')..'\n'
                ..'یوزرنیم : '..Username..'\n'
                ..'ایدی : '..result.from.peer_id..'\n\n'
+			   ..'شماره : '..result.phone..'\n'
 	local hash = 'مقام:'..result.to.id..':variables'
 		local value = redis:hget(hash, result.from.id)
 		 if not value then
-		    if result.from.peer_id == tonumber(MKH) then
+		    if result.from.peer_id == tonumber(sudo) then
 		       text = text..'مقام : مدیر کل ربات Executive Admin \n\n'
 		     elseif is_admin2(result.from.peer_id) then
 		       text = text..'مقام : ادمین Admin \n\n'
@@ -121,7 +124,7 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
   local um_hash = 'msgs:'..result.from.peer_id..':'..result.to.peer_id
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'@MoonTeam'
+  text = text..'@cruel_channel'
   send_msg(extra.receiver, text, ok_cb, true)
 end
 
@@ -165,11 +168,12 @@ local function run(msg, matches)
    local text = text..'فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
    local text = text..'یوزر : '..Username..'\n'
    local text = text..'ایدی کاربری : '..msg.from.id..'\n\n'
+   local text = text..'شماره : '..msg.from.phone..'\n'
    local hash = 'rank:variables'
 	if hash then
 	  local value = redis:hget(hash, msg.from.id)
 	  if not value then
-		if msg.from.id == tonumber(MKH) then
+		if msg.from.id == tonumber(sudo) then
 		 text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 		elseif is_sudo(msg) then
 		 text = text..'مقام : ادمین ربات (Admin) \n\n'
