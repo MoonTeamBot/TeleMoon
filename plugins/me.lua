@@ -38,7 +38,8 @@ return {
     "^[/!#](restart)$",
     "^(me)$",
     "^(botload)$",
-    "^(restart)$",  },
+    "^(restart)$",
+  },
   run = run,
   pre_process = pre_process
 }
