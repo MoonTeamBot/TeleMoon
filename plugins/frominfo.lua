@@ -518,8 +518,8 @@ return {
 			},
 		},
 	patterns = {
-		"^(infodel) (.*)$",
-		"^(info) ([^%s]+) (.*)$",
+		"^/(infodel) (.*)$",
+		"^/(info) ([^%s]+) (.*)$",
 		"^([Ii]nfo) (.*)$",
 		"^(info)$",
 		"^(Info)$",
