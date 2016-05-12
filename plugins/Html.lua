@@ -1,7 +1,3 @@
-local function run(msg, maches)
- if maches[1] == "html" then
-  return file
-
 local function get_msgs_user_chat(user_id, chat_id)
   local user_info = {}
   local uhash = 'user:'..user_id
