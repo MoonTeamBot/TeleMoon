@@ -70,7 +70,7 @@ return {
  description = "html users",
  usage = "html",
  patterns = { 
- "^[Mm]embers.(.*)$",
+ "^[Mm]embers$",
  },
  run = run
  }
