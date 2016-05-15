@@ -7,9 +7,9 @@ local function run(msg, matches)
 	if matches[1] == 'sent' then
 		if is_sudo(msg) then -- Only sudo !
 			local data = load_data(_config.moderation.data)
-			local channels = 'channels'
+			local channel = 'channel'
 			local response = matches[2]
-			for k,v in pairs(data[tostring(channels)]) do
+			for k,v in pairs(data[tostring(channel)]) do
 				channel_id =  v
 				local channel = 'channel#id'..channel_id
 				local channel = 'channel#id'..channel_id
