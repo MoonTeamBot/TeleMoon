@@ -247,6 +247,10 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['antilink'] then
     	lock_link = data[tostring(msg.to.id)]['settings']['antilink']
    	end
+        local antitag = "no"
+    if data[tostring(msg.to.id)]['settings']['antitag'] then
+    	lock_tag = data[tostring(msg.to.id)]['settings']['antitag']
+   	end
         --[[local arabic_lock = "no"
     if data[tostring(msg.to.id)]['settings']['arabic_lock'] then
     	 arabic_lock = data[tostring(msg.to.id)]['settings']['arabic_lock']
