@@ -1754,7 +1754,8 @@ end
       local username = matches[2]
       local username = username:gsub("@","")
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /res "..username)
-      return resolve_username(username,  callbackres, cbres_extra)
+      resolve_username(username,  callbackres, cbres_extra)
+          return
     end
     if matches[1] == 'kickinactive' then
       --send_large_msg('chat#id'..msg.to.id, 'I\'m in matches[1]')
