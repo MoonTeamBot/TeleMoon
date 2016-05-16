@@ -6,15 +6,15 @@ if msg.to.type == 'chat' then
     local data = load_data(_config.moderation.data)
     if data[tostring(msg.to.id)] then
         if data[tostring(msg.to.id)]['settings'] then
-            if data[tostring(msg.to.id)]['settings']['lock_tag'] then
-                lock_tag = data[tostring(msg.to.id)]['settings']['lock_tag']
+            if data[tostring(msg.to.id)]['settings']['antitag'] then
+                lock_tag = data[tostring(msg.to.id)]['settings']['antitag']
             end
         end
     end
     local chat = get_receiver(msg)
     local user = "user#id"..msg.from.id
     if lock_tag == "yes" then
-        send_large_msg(chat, 'tag is not allowed here⛔️')
+        send_large_msg(chat, 'تگ مجاز نمیباشد)
         chat_del_user(chat, user, ok_cb, true)
     end
 end
