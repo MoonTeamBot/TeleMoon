@@ -6,7 +6,7 @@ local function check_member_autorealm(cb_extra, success, result)
   local data = cb_extra.data
   local msg = cb_extra.msg
   for k,v in pairs(result.members) do
-    local member_id = v.id
+    local member_id = v.peer_id
     if member_id ~= our_id then
       -- Group configuration
       data[tostring(msg.to.id)] = {
