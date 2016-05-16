@@ -840,7 +840,7 @@ local function modadd(msg)
 end
 local function realmadd(msg)
   -- superuser and admins only (because sudo are always has privilege)
-  if not is_admin(msg) then
+  if not is_admin1(msg) then
     return "فقط مخصوص سودو و ادمین!"
   end
   local data = load_data(_config.moderation.data)
@@ -853,7 +853,7 @@ end
 -- Global functions
 function modrem(msg)
   -- superuser and admins only (because sudo are always has privilege)
-  if not is_admin(msg) then
+  if not is_admin1(msg) then
     return "فقط مخصوص سودو و ادمین!"
   end
   local data = load_data(_config.moderation.data)
