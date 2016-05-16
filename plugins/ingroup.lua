@@ -14,7 +14,7 @@ local function check_member_autorealm(cb_extra, success, result)
         settings = {
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
-          antitag = 'no',
+          lock_tag = 'no',
 	  antilink = 'no',
 	  lock_name = 'yes',
           lock_photo = 'no',
@@ -47,7 +47,7 @@ local function check_member_realm_add(cb_extra, success, result)
         settings = {
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
-		  antitag = 'no',
+		  lock_tag = 'no',
 		  antilink = 'no',
 		  lock_name = 'yes',
           lock_photo = 'no',
@@ -82,7 +82,7 @@ function check_member_group(cb_extra, success, result)
         settings = {
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
-		  antitag = 'no',
+		  lock_tag = 'no',
 		  antilink = 'no',
 		  lock_name = 'yes',
           lock_photo = 'no',
@@ -117,7 +117,7 @@ local function check_member_modadd(cb_extra, success, result)
         settings = {
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
-		  antitag = 'no',
+		  lock_tag = 'no',
 		  antilink = 'no',
 		  lock_name = 'yes',
           lock_photo = 'no',
@@ -247,9 +247,9 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['antilink'] then
     	lock_link = data[tostring(msg.to.id)]['settings']['antilink']
    	end
-        local antitag = "no"
-    if data[tostring(msg.to.id)]['settings']['antitag'] then
-    	lock_tag = data[tostring(msg.to.id)]['settings']['antitag']
+        local lock_tag = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_tag'] then
+    	lock_tag = data[tostring(msg.to.id)]['settings']['lock_tag']
    	end
         --[[local arabic_lock = "no"
     if data[tostring(msg.to.id)]['settings']['arabic_lock'] then
@@ -274,7 +274,7 @@ local function show_group_settingsmod(msg, data, target)
    	end
 
   local settings = data[tostring(target)]['settings']
-  local text = "⚙Group Settings⚙ \n➖➖➖➖➖➖➖➖➖\n🔵Lock #Join : "..settings.lock_join.."\n🔴Lock #Ads : "..settings.antilink.."\n🔵Lock #Tag : "..settings.antitag.."\n🔴Lock #Name : "..settings.lock_name.."\n🔵Lock #Photo : "..settings.lock_photo.."\n🔴Lock #Member : "..settings.lock_member.."\n🔵Lock #Eng : "..lock_eng.."\n🔴Lock #Arabic : "..settings.lock_arabic.."\n🔵Lock #BadW : "..lock_badw.."\n🔴Lock #Sticker : "..lock_sticker.."\n🔵Lock #Fwd : "..lock_fwd.."\n🔴Lock #Media : "..lock_media.."\n🔵Lock #Emoji : "..lock_emoji.."\n🔴Lock #Chat : "..lock_chat.."\n🔵Lock #Leave : "..leave_ban.."\n🔴Flood #Sensitivity : "..NUM_MSG_MAX.."\n🔵Bot #Protection : "..bots_protection.."\n#Model : "..groupmodel.."\n#Version : "..version.."\n➖➖➖➖➖➖➖➖➖\n@MoonTeam"
+  local text = "⚙Group Settings⚙ \n➖➖➖➖➖➖➖➖➖\n🔵Lock #Join : "..settings.lock_join.."\n🔴Lock #Ads : "..settings.antilink.."\n🔵Lock #Tag : "..settings.lock_tag.."\n🔴Lock #Name : "..settings.lock_name.."\n🔵Lock #Photo : "..settings.lock_photo.."\n🔴Lock #Member : "..settings.lock_member.."\n🔵Lock #Eng : "..lock_eng.."\n🔴Lock #Arabic : "..settings.lock_arabic.."\n🔵Lock #BadW : "..lock_badw.."\n🔴Lock #Sticker : "..lock_sticker.."\n🔵Lock #Fwd : "..lock_fwd.."\n🔴Lock #Media : "..lock_media.."\n🔵Lock #Emoji : "..lock_emoji.."\n🔴Lock #Chat : "..lock_chat.."\n🔵Lock #Leave : "..leave_ban.."\n🔴Flood #Sensitivity : "..NUM_MSG_MAX.."\n🔵Bot #Protection : "..bots_protection.."\n#Model : "..groupmodel.."\n#Version : "..version.."\n➖➖➖➖➖➖➖➖➖\n@MoonTeam"
   return text
 end
 
