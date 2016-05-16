@@ -886,7 +886,7 @@ local function get_rules(msg, data)
     return 'هیچ قوانینی ثبت نشده است.'
   end
   local rules = data[tostring(msg.to.id)][data_cat]
-  local rules = 'قوانین گروه:\n➖➖➖➖➖➖➖➖➖\n'..rules
+  local rules = 'قوانین گروه:\n➖➖➖➖➖➖➖➖➖➖➖➖\n'..rules
   return rules
 end
 
@@ -974,7 +974,7 @@ local function setowner_by_reply(extra, success, result)
   data[tostring(msg.to.id)]['set_owner'] = tostring(msg.from.id)
       save_data(_config.moderation.data, data)
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] setted ["..msg.from.id.."] as owner")
-      local text = msg.from.print_name:gsub("_", " ").."\n صاحب گروه شد.\n➖➖➖➖➖➖➖➖➖\nنام گروه : "..msg.to.title.."\nآیدی گروه : "..msg.to.id.."\nیوزر : @"..(msg.from.username or '').."\nآیدی : "..msg.from.id
+      local text = msg.from.print_name:gsub("_", " ").."\n صاحب گروه شد.\n➖➖➖➖➖➖➖➖➖➖➖➖\nنام گروه : "..msg.to.title.."\nآیدی گروه : "..msg.to.id.."\nیوزر : @"..(msg.from.username or '').."\nآیدی : "..msg.from.id
       return send_large_msg(receiver, text)
 end
 
@@ -1004,7 +1004,7 @@ local function modlist(msg)
     return 'هیچ مدیری برای گروه تعیین نشد است.'
   end
   local i = 1
-  local message = '\nلیست مدیران: \n➖➖➖➖➖➖➖➖➖\n ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
+  local message = '\nلیست مدیران: \n➖➖➖➖➖➖➖➖➖➖➖➖\n ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
   for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
     message = message ..i..' - '..v..' [' ..k.. '] \n'
     i = i + 1
