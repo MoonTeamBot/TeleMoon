@@ -15,7 +15,7 @@ local function check_member_autorealm(cb_extra, success, result)
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
           antitag = 'no',
-	  antilink = 'no',
+	  lock_link = 'no',
 	  lock_name = 'yes',
           lock_photo = 'no',
           lock_member = 'no',
@@ -48,7 +48,7 @@ local function check_member_realm_add(cb_extra, success, result)
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
 		  antitag = 'no',
-		  antilink = 'no',
+		  lock_link = 'no',
 		  lock_name = 'yes',
           lock_photo = 'no',
           lock_member = 'no',
@@ -83,7 +83,7 @@ function check_member_group(cb_extra, success, result)
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
 		  antitag = 'no',
-		  antilink = 'no',
+		  lock_link = 'no',
 		  lock_name = 'yes',
           lock_photo = 'no',
           lock_member = 'no',
@@ -118,7 +118,7 @@ local function check_member_modadd(cb_extra, success, result)
           set_name = string.gsub(msg.to.print_name, '_', ' '),
           lock_join = 'no',
 		  antitag = 'no',
-		  antilink = 'no',
+		  lock_link = 'no',
 		  lock_name = 'yes',
           lock_photo = 'no',
           lock_member = 'no',
@@ -243,9 +243,9 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['lock_chat'] then
     	lock_chat = data[tostring(msg.to.id)]['settings']['lock_chat']
    	end
-        local antilink = "no"
-    if data[tostring(msg.to.id)]['settings']['antilink'] then
-    	lock_link = data[tostring(msg.to.id)]['settings']['antilink']
+        local lock_link = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_link'] then
+    	lock_link = data[tostring(msg.to.id)]['settings']['lock_link']
    	end
         --[[local arabic_lock = "no"
     if data[tostring(msg.to.id)]['settings']['arabic_lock'] then
@@ -270,7 +270,7 @@ local function show_group_settingsmod(msg, data, target)
    	end
 
   local settings = data[tostring(target)]['settings']
-  local text = "⚙Group Settings⚙ \n➖➖➖➖➖➖➖➖➖\n🔐Lock #Join : "..settings.lock_join.."\n🔐Lock #Ads : "..settings.antilink.."\n🔐Lock #Tag : "..settings.antitag.."\n🔐Lock #Name : "..settings.lock_name.."\n🔐Lock #Photo : "..settings.lock_photo.."\n🔐Lock #Member : "..settings.lock_member.."\n🔐Lock #English : "..lock_eng.."\n🔐Lock #Arabic : "..settings.lock_arabic.."\n🔐Lock #BadWords : "..lock_badw.."\n🔐Lock #Sticker : "..lock_sticker.."\n🔐Lock #Forward : "..lock_fwd.."\n🔐Lock #Media : "..lock_media.."\n🔐Lock #Emoji : "..lock_emoji.."\n🔐Lock #Chat : "..lock_chat.."\n🔐Lock #Leave : "..leave_ban.."\n🔐Flood #Sensitivity : "..NUM_MSG_MAX.."\n🔐Bot #Protection : "..bots_protection.."\n#Model : "..groupmodel.."\n#Version : "..version.."\n➖➖➖➖➖➖➖➖➖\n@MoonTeam"
+  local text = "⚙Group Settings⚙ \n➖➖➖➖➖➖➖➖➖\n🔐Lock #Join : "..settings.lock_join.."\n🔐Lock #Links : "..settings.lock_link.."\n🔐Lock #Tag : "..settings.antitag.."\n🔐Lock #Name : "..settings.lock_name.."\n🔐Lock #Photo : "..settings.lock_photo.."\n🔐Lock #Member : "..settings.lock_member.."\n🔐Lock #Eng : "..lock_eng.."\n🔐Lock #Arabic : "..settings.lock_arabic.."\n🔐Lock #BadW : "..lock_badw.."\n🔐Lock #Sticker : "..lock_sticker.."\n🔐Lock #Fwd : "..lock_fwd.."\n🔐Lock #Media : "..lock_media.."\n🔐Lock #Emoji : "..lock_emoji.."\n🔐Lock #Chat : "..lock_chat.."\n🔐Lock #Leave : "..leave_ban.."\n🔐Flood #Sensitivity : "..NUM_MSG_MAX.."\n🔐Bot #Protection : "..bots_protection.."\n#Model : "..groupmodel.."\n#Version : "..version.."\n➖➖➖➖➖➖➖➖➖\n@MoonTeam"
   return text
 end
 
@@ -483,11 +483,11 @@ local function lock_group_link(msg, data, target)
 if not is_momod(msg) then
 return "فقط مخصوص مدیران!"
 end
-local group_link_lock = data[tostring(target)]['settings']['antilink']
+local group_link_lock = data[tostring(target)]['settings']['lock_link']
 if group_link_lock == 'yes' then
 return 'قفل تبلیغات از قبل فعال بود.'
 else
-data[tostring(target)]['settings']['antilink'] = 'yes'
+data[tostring(target)]['settings']['lock_link'] = 'yes'
 save_data(_config.moderation.data, data)
 return 'قفل تبلیغات فعال شد.'
 end
@@ -496,11 +496,11 @@ local function unlock_group_link(msg, data, target)
 if not is_momod(msg) then
 return "فقط مخصوص مدیران!"
 end
-local group_link_lock = data[tostring(target)]['settings']['antilink']
+local group_link_lock = data[tostring(target)]['settings']['lock_link']
 if group_link_lock == 'no' then
 return 'قفل تبلیغات از قبل فعال نبود.'
 else
-data[tostring(target)]['settings']['antilink'] = 'no'
+data[tostring(target)]['settings']['lock_link'] = 'no'
 save_data(_config.moderation.data, data)
 return 'قفل تبلیغات غیر فعال شد.'
 end
@@ -1410,7 +1410,7 @@ end
         return lock_group_chat(msg, data, target)
       end
        
-	 if matches[2] == 'ads' then
+	 if matches[2] == 'links' then
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked link ")
        return lock_group_link(msg, data, target)
      end
@@ -1445,7 +1445,7 @@ end
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked arabic ")
         return unlock_group_arabic(msg, data, target)
       end
-	  if matches[2] == 'ads' then
+	  if matches[2] == 'links' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked link ")
         return unlock_group_link(msg, data, target)
       end
