@@ -981,7 +981,7 @@ end
 local function promote_demote_res(extra, success, result)
 --vardump(result)
 --vardump(extra)
-      local member_id = result.id
+      local member_id = result.peer_id
       local member_username = "@"..result.username
       local chat_id = extra.chat_id
       local mod_cmd = extra.mod_cmd
