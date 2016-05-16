@@ -1297,7 +1297,7 @@ local function run(msg, matches)
 	}
 	local username = matches[2]
 	local username = string.gsub(matches[2], '@', '')
-	return res_user(username, promote_demote_res, cbres_extra)
+	return resolve_username(username, promote_demote_res, cbres_extra)
     end
     if matches[1]:lower() == 'demote' and not matches[2] then
       if not is_owner(msg) then
