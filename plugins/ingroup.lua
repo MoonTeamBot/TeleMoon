@@ -1747,7 +1747,7 @@ end
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /help")
       return help()
     end
-    if matches[1] == 'res' and is_momod(msg) then 
+    if matches[1] == 'res' then 
       local cbres_extra = {
         chatid = msg.to.id
       }
