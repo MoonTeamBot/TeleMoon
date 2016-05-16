@@ -243,6 +243,10 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['lock_chat'] then
     	lock_chat = data[tostring(msg.to.id)]['settings']['lock_chat']
    	end
+        local lock_link = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_link'] then
+    	lock_link = data[tostring(msg.to.id)]['settings']['lock_link']
+   	end
         --[[local arabic_lock = "no"
     if data[tostring(msg.to.id)]['settings']['arabic_lock'] then
     	 arabic_lock = data[tostring(msg.to.id)]['settings']['arabic_lock']
