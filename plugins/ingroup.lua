@@ -1753,7 +1753,6 @@ end
       }
       local username = matches[2]
       local username = username:gsub("@","")
-      savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /res "..username)
       resolve_username(username,  callbackres, cbres_extra)
           return
     end
