@@ -197,211 +197,394 @@ function show_group_settingsmod(msg, target)
       	end
     end
     local bots_protection = "Yes"
-    if data[tostring(target)]['settings']['lock_bots'] then
-    	bots_protection = data[tostring(target)]['settings']['lock_bots']
+    if data[tostring(msg.to.id)]['settings']['lock_bots'] then
+    	bots_protection = data[tostring(msg.to.id)]['settings']['lock_bots']
    	end
-    local leave_ban = "no"
-    if data[tostring(target)]['settings']['leave_ban'] then
-    	leave_ban = data[tostring(target)]['settings']['leave_ban']
+    local lock_fwd = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_fwd'] then
+    	 lock_fwd = data[tostring(msg.to.id)]['settings']['lock_fwd']
    	end
-	if data[tostring(target)]['settings'] then
-		if not data[tostring(target)]['settings']['lock_link'] then
-			data[tostring(target)]['settings']['lock_link'] = 'no'
+    local lock_media = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_media'] then
+    	 lock_media = data[tostring(msg.to.id)]['settings']['lock_media']
+   	end
+    local lock_emoji = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_emoji'] then
+    	 lock_emoji = data[tostring(msg.to.id)]['settings']['lock_emoji']
+   	end
+   local leave_ban = "no"
+    if data[tostring(msg.to.id)]['settings']['leave_ban'] then
+    	leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
+   	end
+   	  local lock_eng = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_eng'] then
+        lock_eng = data[tostring(msg.to.id)]['settings']['lock_eng']
+        end
+          local lock_badw = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_badw'] then
+        lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
+        end
+        local lock_sticker = "ok"
+    if data[tostring(msg.to.id)]['settings']['sticker'] then
+        lock_sticker = data[tostring(msg.to.id)]['settings']['sticker']
+        end
+        local lock_chat = "no"
+    if data[tostring(msg.to.id)]['settings']['lock_chat'] then
+    	lock_chat = data[tostring(msg.to.id)]['settings']['lock_chat']
+   	end
+        local antilink = "no"
+    if data[tostring(msg.to.id)]['settings']['antilink'] then
+    	lock_link = data[tostring(msg.to.id)]['settings']['antilink']
+   	end
+        --[[local arabic_lock = "no"
+    if data[tostring(msg.to.id)]['settings']['arabic_lock'] then
+    	 arabic_lock = data[tostring(msg.to.id)]['settings']['arabic_lock']
+   	end]]
+      if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['lock_arabic'] then
+			data[tostring(target)]['settings']['lock_arabic'] = 'no'
 		end
 	end
-	if data[tostring(target)]['settings'] then
-		if not data[tostring(target)]['settings']['lock_sticker'] then
-			data[tostring(target)]['settings']['lock_sticker'] = 'no'
-		end
-	end
-	if data[tostring(target)]['settings'] then
-		if not data[tostring(target)]['settings']['public'] then
-			data[tostring(target)]['settings']['public'] = 'no'
-		end
-	end
-	if data[tostring(target)]['settings'] then
-		if not data[tostring(target)]['settings']['lock_rtl'] then
-			data[tostring(target)]['settings']['lock_rtl'] = 'no'
-		end
-	end
+   	 local groupmodel = "normal"
+    if data[tostring(msg.to.id)]['settings']['groupmodel'] then
+    	groupmodel = data[tostring(msg.to.id)]['settings']['groupmodel']
+   	end
+   	 local version = "4"
+    if data[tostring(msg.to.id)]['settings']['version'] then
+    	version = data[tostring(msg.to.id)]['settings']['version']
+   	end
+   	 local welcome = "group"
+    if data[tostring(msg.to.id)]['settings']['welcome'] then
+    	welcome = data[tostring(msg.to.id)]['settings']['welcome']
+   	end
+
   local settings = data[tostring(target)]['settings']
-  local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member.."\nLock group leave : "..leave_ban.."\nflood sensitivity : "..NUM_MSG_MAX.."\nBot protection : "..bots_protection.."\nLock links : "..settings.lock_link.."\nLock RTL: "..settings.lock_rtl.."\nLock sticker: "..settings.lock_sticker.."\nPublic: "..settings.public
+  local text = "⚙Group Settings⚙ \n➖➖➖➖➖➖➖➖➖\n🔵Lock #Join : "..settings.lock_join.."\n🔴Lock #Ads : "..settings.antilink.."\n🔵Lock #Tag : "..settings.antitag.."\n🔴Lock #Name : "..settings.lock_name.."\n🔵Lock #Photo : "..settings.lock_photo.."\n🔴Lock #Member : "..settings.lock_member.."\n🔵Lock #Eng : "..lock_eng.."\n🔴Lock #Arabic : "..settings.lock_arabic.."\n🔵Lock #BadW : "..lock_badw.."\n🔴Lock #Sticker : "..lock_sticker.."\n🔵Lock #Fwd : "..lock_fwd.."\n🔴Lock #Media : "..lock_media.."\n🔵Lock #Emoji : "..lock_emoji.."\n🔴Lock #Chat : "..lock_chat.."\n🔵Lock #Leave : "..leave_ban.."\n🔴Flood #Sensitivity : "..NUM_MSG_MAX.."\n🔵Bot #Protection : "..bots_protection.."\n#Model : "..groupmodel.."\n#Version : "..version.."\n➖➖➖➖➖➖➖➖➖\n@MoonTeam"
   return text
 end
 
 local function set_descriptionmod(msg, data, target, about)
   if not is_momod(msg) then
-    return
+    return "قفط مخصوص مدیران!"
   end
   local data_cat = 'description'
   data[tostring(target)][data_cat] = about
   save_data(_config.moderation.data, data)
-  return 'Set group description to:\n'..about
+  return 'توضیحات گروه تغییر کرد به:\n'..about
 end
 local function get_description(msg, data)
   local data_cat = 'description'
   if not data[tostring(msg.to.id)][data_cat] then
-    return 'No description available.'
+    return 'هیچ موضوعی برای گروه تعیین نشده.'
   end
   local about = data[tostring(msg.to.id)][data_cat]
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
-  return 'About '..about
+  return 'توضیحات: '..about
 end
 local function lock_group_arabic(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "این دستور را فقط مدیر و ادمین ها میتوانند استفاده کنند"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return 'Arabic is already locked'
+    return 'قفل عربی از قبل فعال بود.'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Arabic has been locked'
+    return 'قفل عربی فعال شد.'
   end
 end
 
 local function unlock_group_arabic(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'no' then
-    return 'Arabic is already unlocked'
+    return 'قفل عربی از قبل فعال نبود.'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Arabic has been unlocked'
+    return 'قفل عربی غیر فعال شد'
   end
 end
-
 local function lock_group_bots(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'yes' then
-    return 'Bots protection is already enabled'
+    return 'محافظت دربرابر ورود ربات ها از قبل فعال بود.'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Bots protection has been enabled'
+    return 'محافظت دربرابر ورود ربات ها فعال شد.'
   end
 end
 
 local function unlock_group_bots(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'no' then
-    return 'Bots protection is already disabled'
+    return 'محافظت دربرابر ورود ربات ها از قبل فعال نبود.'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Bots protection has been disabled'
+    return 'محافظت دربرابر ربات ها غیر فعال شد.'
+  end
+end
+local function lock_group_fwd(msg, data, target)
+  if not is_momod(msg) then
+    return 'فقط مخصوص مدیران!'
+  end
+  local group_fwd_lock = data[tostring(target)]['settings']['lock_fwd']
+  if group_fwd_lock == 'yes' then
+    return 'قفل فروارد از قبل فعال بود.'
+  else
+    data[tostring(target)]['settings']['lock_fwd'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'قفل فروارد فعال شد.'
   end
 end
 
+local function unlock_group_fwd(msg, data, target)
+  if not is_momod(msg) then
+    return 'فقط مخصوص مدیران!'
+  end
+  local group_fwd_lock = data[tostring(target)]['settings']['lock_fwd']
+  if group_fwd_lock == 'no' then
+    return 'قفل فروارد از قبل فعال نبود.'
+  else
+    data[tostring(target)]['settings']['lock_fwd'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'قفل فروارد غیر فعال شد.'
+  end
+end
+local function lock_group_media(msg, data, target)
+  if not is_momod(msg) then
+    return 'فقط مخصوص مدیران!'
+  end
+  local group_media_lock = data[tostring(target)]['settings']['lock_media']
+  if group_media_lock == 'yes' then
+    return 'قفل رسانه از قبل فعال بود.'
+  else
+    data[tostring(target)]['settings']['lock_media'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'قفل رسانه فعال شد.'
+  end
+end
+
+local function unlock_group_media(msg, data, target)
+  if not is_momod(msg) then
+    return 'فقط مخصوص مدیران!'
+  end
+  local group_media_lock = data[tostring(target)]['settings']['lock_media']
+  if group_media_lock == 'no' then
+    return 'قفل رسانه از قبل فعال نبود.'
+  else
+    data[tostring(target)]['settings']['lock_media'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'قفل رسانه غیر فعال شد.'
+  end
+end
+local function lock_group_emoji(msg, data, target)
+  if not is_momod(msg) then
+    return 'فقط مخصوص مدیران!'
+  end
+  local group_emoji_lock = data[tostring(target)]['settings']['lock_emoji']
+  if group_emoji_lock == 'yes' then
+    return 'قفل ایموجی از قبل فعال بود.'
+  else
+    data[tostring(target)]['settings']['lock_emoji'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'قفل ایموجی فعال شد.'
+  end
+end
+
+local function unlock_group_emoji(msg, data, target)
+  if not is_momod(msg) then
+    return 'فقط مخصوص مدیران!'
+  end
+  local group_emoji_lock = data[tostring(target)]['settings']['lock_emoji']
+  if group_emoji_lock == 'no' then
+    return 'قفل ایموجی از قبل فعال نبود.'
+  else
+    data[tostring(target)]['settings']['lock_emoji'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'قفل ایموجی غیر فعال شد.'
+  end
+end
+local function lock_group_tag(msg, data, target)
+if not is_momod(msg) then
+return "فقط مخصوص مدیران!"
+end
+local group_tag_lock = data[tostring(target)]['settings']['antitag']
+if group_tag_lock == 'yes' then
+return 'قفل تگ از قبل فعال بود.'
+else
+data[tostring(target)]['settings']['antitag'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'قفل تگ فعال شد.'
+end
+end
+local function unlock_group_tag(msg, data, target)
+if not is_momod(msg) then
+return "قفط مخصوص مدیران!"
+end
+local group_tag_lock = data[tostring(target)]['settings']['antitag']
+if group_tag_lock == 'no' then
+return 'قفل تگ از قبل فعال نبود.'
+else
+data[tostring(target)]['settings']['antitag'] = 'no'
+save_data(_config.moderation.data, data)
+return 'قفل تگ غیر فعال شد.'
+end
+end
+local function lock_group_join(msg, data, target)
+if not is_momod(msg) then
+return "فقط مخصوص مدیران!"
+end
+local group_join_lock = data[tostring(target)]['settings']['lock_join']
+if group_join_lock == 'yes' then
+return 'قفل ورود با لینک از قبل فعال بود.'
+else
+data[tostring(target)]['settings']['lock_join'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'قفل ورود با لینک فعال شد.'
+end
+end
+local function unlock_group_join(msg, data, target)
+if not is_momod(msg) then
+return "فقط مخصوص مدیران!"
+end
+local group_join_lock = data[tostring(target)]['settings']['lock_join']
+if group_join_lock == 'no' then
+return 'قفل ورود با لینک از قبل فعال نبود.'
+else
+data[tostring(target)]['settings']['lock_join'] = 'no'
+save_data(_config.moderation.data, data)
+return 'قفل ورود با لینک غیر فعال شد.'
+end
+end
+local function lock_group_link(msg, data, target)
+if not is_momod(msg) then
+return "فقط مخصوص مدیران!"
+end
+local group_link_lock = data[tostring(target)]['settings']['antilink']
+if group_link_lock == 'yes' then
+return 'قفل تبلیغات از قبل فعال بود.'
+else
+data[tostring(target)]['settings']['antilink'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'قفل تبلیغات فعال شد.'
+end
+end
+local function unlock_group_link(msg, data, target)
+if not is_momod(msg) then
+return "فقط مخصوص مدیران!"
+end
+local group_link_lock = data[tostring(target)]['settings']['antilink']
+if group_link_lock == 'no' then
+return 'قفل تبلیغات از قبل فعال نبود.'
+else
+data[tostring(target)]['settings']['antilink'] = 'no'
+save_data(_config.moderation.data, data)
+return 'قفل تبلیغات غیر فعال شد.'
+end
+end
 local function lock_group_namemod(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "قفط مخصوص مدیران!"
   end
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
   if group_name_lock == 'yes' then
-    return 'Group name is already locked'
+    return 'اسم گروه از قبل قفل بود.'
   else
     data[tostring(target)]['settings']['lock_name'] = 'yes'
     save_data(_config.moderation.data, data)
     rename_chat('chat#id'..target, group_name_set, ok_cb, false)
-    return 'Group name has been locked'
+    return 'اسم گروه قفل شد.'
   end
 end
 local function unlock_group_namemod(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
   if group_name_lock == 'no' then
-    return 'Group name is already unlocked'
+    return 'اسم گروه از قبل قفل نبود.'
   else
     data[tostring(target)]['settings']['lock_name'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group name has been unlocked'
+    return 'قفل اسم گروه غیر فعال شد.'
   end
 end
 local function lock_group_floodmod(msg, data, target)
-  if not is_momod(msg) then
-    return 
+  if not is_owner(msg) then
+    return "مخصوص صاحب گروه"
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'Group flood is locked'
+    return 'قفل حساسیت اسپم در گروه از قبل فعال بود.'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Group flood has been locked'
+    return 'قفل حساسیت اسپم در گروه فعال شد.'
   end
 end
 
 local function unlock_group_floodmod(msg, data, target)
-  if not is_momod(msg) then
-	return 
-  end
   if not is_owner(msg) then
-    return "Only owners can unlock flood"
+    return "فقط مخصوص صاحب گروه"
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'no' then
-    return 'Group flood is not locked'
+    return 'قفل حساسیت اسپم در گروه از قبل فعال نبود.'
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group flood has been unlocked'
+    return 'قفل حساسیت اسپم در گروه غیر فعال شد.'
   end
 end
 
 local function lock_group_membermod(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'yes' then
-    return 'Group members are already locked'
+    return 'قفل ورود اعضا از قبل فعال بود.'
   else
     data[tostring(target)]['settings']['lock_member'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'Group members has been locked'
+  return 'قفل ورود اعضا فعال شد.'
 end
 
 local function unlock_group_membermod(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'no' then
-    return 'Group members are not locked'
+    return 'قفل ورود اعضا از قبل فعال نبود.'
   else
     data[tostring(target)]['settings']['lock_member'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group members has been unlocked'
+    return 'قفل ورود اعضا غیر فعال شد.'
   end
 end
 
 
 local function set_public_membermod(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "For moderators only!"
   end
   local group_member_lock = data[tostring(target)]['settings']['public']
-  local long_id = data[tostring(target)]['long_id']
-  if not long_id then
-	data[tostring(target)]['long_id'] = msg.to.peer_id 
-	save_data(_config.moderation.data, data)
-  end
   if group_member_lock == 'yes' then
     return 'Group is already public'
   else
@@ -413,14 +596,9 @@ end
 
 local function unset_public_membermod(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "For moderators only!"
   end
   local group_member_lock = data[tostring(target)]['settings']['public']
-  local long_id = data[tostring(target)]['long_id']
-  if not long_id then
-	data[tostring(target)]['long_id'] = msg.to.peer_id 
-	save_data(_config.moderation.data, data)
-  end
   if group_member_lock == 'no' then
     return 'Group is not public'
   else
@@ -432,183 +610,203 @@ end
 
 local function lock_group_leave(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
-  local leave_ban = data[tostring(target)]['settings']['leave_ban']
+  local leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
   if leave_ban == 'yes' then
-    return 'Leaving users will be banned'
+    return 'قفل خروج=مسدود از قبل فعال بود.'
   else
-    data[tostring(target)]['settings']['leave_ban'] = 'yes'
+    data[tostring(msg.to.id)]['settings']['leave_ban'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'Leaving users will be banned'
+  return 'قفل خروج=مسدود فعال شد و کسانی که لفت دهند خودکار مسدود خواهند شد.'
 end
 
 local function unlock_group_leave(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
   local leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
   if leave_ban == 'no' then
-    return 'Leaving users will not be banned'
+    return 'قفل خروج=مسدود از قبل فعال نبود.'
   else
-    data[tostring(target)]['settings']['leave_ban'] = 'no'
+    data[tostring(msg.to.id)]['settings']['leave_ban'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Leaving users will not be banned'
+    return 'قفل خروج=مسدود غیر فعال شد.'
   end
 end
-
-local function unlock_group_photomod(msg, data, target)
+--[[local function lock_group_eng(msg, data, target)
   if not is_momod(msg) then
-    return 
+    return "فقط مخصوص مدیران!"
   end
-  local group_photo_lock = data[tostring(target)]['settings']['lock_photo']
-  if group_photo_lock == 'no' then
-    return 'Group photo is not locked'
+  local group_eng_lock = data[tostring(target)]['settings']['lock_eng']
+  if group_eng_lock == 'yes' then
+    return 'قفل انگلیسی از قبل فعال بود.'
   else
-    data[tostring(target)]['settings']['lock_photo'] = 'no'
+    data[tostring(target)]['settings']['lock_eng'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Group photo has been unlocked'
+    return 'قفل انگلیسی فعال شد.'
   end
 end
 
-local function lock_group_links(msg, data, target)
+local function unlock_group_eng(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_link_lock = data[tostring(target)]['settings']['lock_link']
-  if group_link_lock == 'yes' then
-    return 'Link posting is already locked'
+  local group_eng_lock = data[tostring(target)]['settings']['lock_eng']
+  if group_eng_lock == 'no' then
+    return 'قفل انگلیسی از قبل فعال نبود.'
   else
-    data[tostring(target)]['settings']['lock_link'] = 'yes'
+    data[tostring(target)]['settings']['lock_eng'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Link posting has been locked'
+    return 'قفل انگلیسی غیر فعال شد.'
   end
-end
-
-local function unlock_group_links(msg, data, target)
+end]]
+local function lock_group_eng(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_link_lock = data[tostring(target)]['settings']['lock_link']
-  if group_link_lock == 'no' then
-    return 'Link posting is not locked'
+  local group_eng_lock = data[tostring(target)]['settings']['lock_eng']
+  if group_eng_lock == 'yes' then
+    return 'قفل انگلیسی از قبل فعال بود.'
   else
-    data[tostring(target)]['settings']['lock_link'] = 'no'
+    data[tostring(target)]['settings']['lock_eng'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Link posting has been unlocked'
+    return 'قفل انگلیسی فعال شد.'
   end
 end
 
-local function lock_group_rtl(msg, data, target)
+local function unlock_group_eng(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_rtl_lock = data[tostring(target)]['settings']['lock_rtl']
-  if group_rtl_lock == 'yes' then
-    return 'RTL is already locked'
+  local group_eng_lock = data[tostring(target)]['settings']['lock_eng']
+  if group_eng_lock == 'no' then
+    return 'قفل انگلیسی از قبل فعال نبود.'
   else
-    data[tostring(target)]['settings']['lock_rtl'] = 'yes'
+    data[tostring(target)]['settings']['lock_eng'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'RTL has been locked'
+    return 'قفل انگلیسی غیر فعال شد.'
   end
 end
-
-local function unlock_group_rtl(msg, data, target)
+--[[local function lock_group_badw(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_rtl_lock = data[tostring(target)]['settings']['lock_rtl']
-  if group_rtl_lock == 'no' then
-    return 'RTL is already unlocked'
+  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
+  if group_badw_lock == 'yes' then
+    return 'قفل فحش از قبل فعال بود.'
   else
-    data[tostring(target)]['settings']['lock_rtl'] = 'no'
+    data[tostring(target)]['settings']['lock_badw'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'RTL has been unlocked'
+    return 'قفل فحش فعال شد.'
+  end
+end]]
+
+local function unlock_group_badw(msg, data, target)
+  if not is_momod(msg) then
+    return "فقط مخصوص مدیران!"
+  end
+  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
+  if group_badw_lock == 'no' then
+    return 'قفل فحش از قبل فعال نبود.'
+  else
+    data[tostring(target)]['settings']['lock_badw'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'قفل فحش غیر فعال شد.'
+  end
+end
+local function lock_group_badw(msg, data, target)
+  if not is_momod(msg) then
+    return "فقط مخصوص مدیران!"
+  end
+  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
+  if group_badw_lock == 'yes' then
+    return 'قفل فحش از قبل فعال بود.'
+  else
+    data[tostring(target)]['settings']['lock_badw'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'قفل فحش فعال شد.'
   end
 end
 
+local function unlock_group_badw(msg, data, target)
+  if not is_momod(msg) then
+    return "فقط مخصوص مدیران!"
+  end
+  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
+  if group_badw_lock == 'no' then
+    return 'قفل فحش از قبل فعال نبود.'
+  else
+    data[tostring(target)]['settings']['lock_badw'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'قفل فحش غیر فعال شد.'
+  end
+end
 local function lock_group_sticker(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
-  if group_sticker_lock == 'yes' then
-    return 'Sticker posting is already locked'
+  local group_sticker_lock = data[tostring(target)]['settings']['sticker']
+  if group_sticker_lock == 'kick' then
+    return 'قفل استیکر از قبل فعال بود.'
   else
-    data[tostring(target)]['settings']['lock_sticker'] = 'yes'
+    data[tostring(target)]['settings']['sticker'] = 'kick'
     save_data(_config.moderation.data, data)
-    return 'Sticker posting has been locked'
+    return 'قفل استیکر فعال شد.'
   end
 end
 
 local function unlock_group_sticker(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
-  if group_sticker_lock == 'no' then
-    return 'Sticker posting is already unlocked'
+  local group_sticker_lock = data[tostring(target)]['settings']['sticker']
+  if group_sticker_lock == 'ok' then
+    return 'قفل استیکر از قبل فعال نبود.'
   else
-    data[tostring(target)]['settings']['lock_sticker'] = 'no'
+    data[tostring(target)]['settings']['sticker'] = 'ok'
     save_data(_config.moderation.data, data)
-    return 'Sticker posting has been unlocked'
+    return 'قفل استیکر غیر فعال شد.'
   end
 end
 
-local function lock_group_contacts(msg, data, target)
+local function lock_group_chat(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_rtl_lock = data[tostring(target)]['settings']['lock_contacts']
-  if group_contacts_lock == 'yes' then
-    return 'Contact posting is already locked'
-  else
-    data[tostring(target)]['settings']['lock_contacts'] = 'yes'
+  local group_chat_lock = data[tostring(target)]['settings']['lock_chat']
+  if group_chat_lock == 'yes' then
+    return 'قفل چت از قبل فعال بود.' else
+    data[tostring(target)]['settings']['lock_chat'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Contact posting has been locked'
-  end
+    return 'قفل چت فعال شد.'  end
 end
 
-local function unlock_group_contacts(msg, data, target)
+local function unlock_group_chat(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_contacts_lock = data[tostring(target)]['settings']['lock_contacts']
-  if group_contacts_lock == 'no' then
-    return 'Contact posting is already unlocked'
-  else
-    data[tostring(target)]['settings']['lock_contacts'] = 'no'
+  local group_chat_lock = data[tostring(target)]['settings']['lock_chat']
+  if group_chat_lock == 'no' then
+    return 'قفل چت از قبل فعال نبود.' else
+    data[tostring(target)]['settings']['lock_chat'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Contact posting has been unlocked'
-  end
+    return 'قفل چت غیر فعال شد.'   end
 end
 
-local function enable_strict_rules(msg, data, target)
-  if not is_momod(msg) then
-    return
-  end
-  local group_rtl_lock = data[tostring(target)]['settings']['strict']
-  if strict == 'yes' then
-    return 'Settings are already strictly enforced'
-  else
-    data[tostring(target)]['settings']['strict'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'Settings will be strictly enforced'
-  end
-end
 
-local function disable_strict_rules(msg, data, target)
+local function unlock_group_photomod(msg, data, target)
   if not is_momod(msg) then
-    return
+    return "فقط مخصوص مدیران!"
   end
-  local group_contacts_lock = data[tostring(target)]['settings']['strict']
-  if strict == 'no' then
-    return 'Settings are not strictly enforced'
+  local group_photo_lock = data[tostring(target)]['settings']['lock_photo']
+  if group_photo_lock == 'no' then
+    return 'عکس گروه از قبل قفل نبود.'
   else
-    data[tostring(target)]['settings']['strict'] = 'no'
+    data[tostring(target)]['settings']['lock_photo'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Settings will not be strictly enforced'
+    return 'قفل عکس گروه غیر فعال شد.'
   end
 end
 
