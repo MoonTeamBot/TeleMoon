@@ -348,11 +348,11 @@ local function lock_group_trash(msg, data, target)
   if not is_momod(msg) then
     return
   end
-  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
-  if group_badw_lock == 'yes' then
+  local group_trash_lock = data[tostring(target)]['settings']['lock_trash']
+  if group_trash_lock == 'yes' then
     return 'trash [badwords] is already locked'
   else
-    data[tostring(target)]['settings']['lock_badw'] = 'yes'
+    data[tostring(target)]['settings']['lock_trash'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'trash [badwords] has been locked'
   end
@@ -639,7 +639,7 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "⚙ SuperGroup settings for:\n#SuperGroup ID :[ "..msg.to.id.." ]\n#Supergroup name :[ "..msg.to.title.." ]\n➖➖➖➖➖➖➖➖➖\n🔵Lock #links : "..settings.lock_link.."\n🔴Lock #tag : "..settings.lock_tag.."\n🔵Lock #badw : "..settings.lock_badw.."\n🔴Lock #contacts : "..settings.lock_contacts.."\n🔵Lock #emoji : "..settings.lock_emoji.."\n🔴Lock #flood: "..settings.flood.."\n🔵Lock #spam: "..settings.lock_spam.."\n🔴Lock #Arabic: "..settings.lock_arabic.."\n🔵Lock #Member: "..settings.lock_member.."\n🔴Lock #RTL: "..settings.lock_rtl.."\n🔵Lock #Tgservice : "..settings.lock_tgservice.."\n🔴Lock #sticker: "..settings.lock_sticker.."\n🔵Public: "..settings.public.."\n🔴type : SuperGroup\n🔵Flood #sensitivity : "..NUM_MSG_MAX.."\n🔴Strict #settings: "..settings.strict
+  local text = "⚙ SuperGroup settings for:\n#SuperGroup ID :[ "..msg.to.id.." ]\n#Supergroup name :[ "..msg.to.title.." ]\n➖➖➖➖➖➖➖➖➖\n🔵Lock #links : "..settings.lock_link.."\n🔴Lock #tag : "..settings.lock_tag.."\n🔵Lock #trash : "..settings.lock_trash.."\n🔴Lock #contacts : "..settings.lock_contacts.."\n🔵Lock #emoji : "..settings.lock_emoji.."\n🔴Lock #flood: "..settings.flood.."\n🔵Lock #spam: "..settings.lock_spam.."\n🔴Lock #Arabic: "..settings.lock_arabic.."\n🔵Lock #Member: "..settings.lock_member.."\n🔴Lock #RTL: "..settings.lock_rtl.."\n🔵Lock #Tgservice : "..settings.lock_tgservice.."\n🔴Lock #sticker: "..settings.lock_sticker.."\n🔵Public: "..settings.public.."\n🔴type : SuperGroup\n🔵Flood #sensitivity : "..NUM_MSG_MAX.."\n🔴Strict #settings: "..settings.strict
   return text
 end
 
