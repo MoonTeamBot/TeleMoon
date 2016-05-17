@@ -1,6 +1,6 @@
 # [TeleMoon](https://telegram.me/TeleMoon)
 
-**An advanced and powerful administration bot based on [SEEDTEAM/TeleSeed(https://github.com/seedteam/teleseed) licensed under the [GNU General Public License](https://github.com/SEEDTEAM/TeleSeed/blob/master/LICENSE)**.
+**An advanced and powerful administration bot based on [SEEDTEAM/TeleSeed](https://github.com/seedteam/teleseed) licensed under the [GNU General Public License](https://github.com/SEEDTEAM/TeleSeed/blob/master/LICENSE)**.
 # Features
 
 * **A powerful antispam system with custom sensitivity for each group**
