@@ -39,7 +39,7 @@ function on_getting_dialogs(cb_extra,success,result)
 end
 function run(msg, matches)
   if not is_admin1(msg) then
-    return "شما دسترسی کنترل سرور را ندارید"
+    return "only for sudo"
   end
   local receiver = get_receiver(msg)
  if string.match then
@@ -50,7 +50,7 @@ function run(msg, matches)
  end
 return {
     description = "return cmd in trm", 
-    usage = "دسترسی به مستقیم به ترمینال .برای استفاده دستور $ را تایپ و عبارت مورد نظر را با یک فاصله بعد از ان تایپ کنید",
+    usage = "server manager",
     patterns = {"^[$](.*)$"}, 
     run = run 
 }
