@@ -47,7 +47,7 @@ cd bin
 cd ..
 cd ..
 ./launch.sh install
-screen ./launch.sh
+./launch.sh
 ```
 
 * * *
