@@ -24,6 +24,7 @@
 
 
 # Let's install the bot.
+```
 
 sudo apt-get update; sudo apt-get upgrade -y --force-yes; sudo apt-get dist-upgrade -y --force-yes; sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev libjansson* libpython-dev make unzip git redis-server g++ -y --force-yes
 
@@ -39,11 +40,11 @@ chmod +x launch.sh
 
 # Our team!
 
-[MAKAN]([Telegram](https://telegram.me/makan))
+**[MAKAN]([Telegram](https://telegram.me/makan))
 
 [Dilan]([Telegram](https://telegram.me/dilan))
 
-[Parham]([Telegram](https://telegram.me/UnFriendlly))
+[Parham]([Telegram](https://telegram.me/UnFriendlly))**
 
 ###Our Telegram channels:
 
