@@ -34,6 +34,20 @@ cd TeleMoon
 chmod +x launch.sh
 ./launch.sh install
 ./launch.sh # Enter a phone number & confirmation code.
+
+if bot is not run
+
+cd TeleMoon
+./launch.sh install
+cd .luarocks
+cd bin 
+./luarocks-5.2 install luafilesystem
+./luarocks-5.2 install lub
+./luarocks-5.2 install luaexpat
+cd ..
+cd ..
+./launch.sh install
+screen ./launch.sh
 ```
 
 * * *
