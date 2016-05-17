@@ -4,20 +4,22 @@ local function run(msg, matches)
 
   while b ~= 0 do
     text = text:trim()
-    text,b = text:gsub('^!+','')
+    text,b = text:gsub('^!+','') 
+    text,b = text:gsub('^/+','')
+    text,b = text:gsub('^#+','') 
   end
-  local file = io.open("./data/echo"..msg.from.id..matches[2], "w")
-  file:write(text)
-  file:flush()
-  file:close()
-  send_document("channel#id"..msg.to.id,"./data/echo"..msg.from.id..matches[2], ok_cb, false)
+  if is_momod(msg) then 
+  return text
+else
+  return 'zert'
 end
-
+end
 return {
   description = "Simplest plugin ever!",
-  usage = "#echo [whatever]: echoes the msg",
+  usage = "!echo [whatever]: echoes the msg",
   patterns = {
-    "^[#/!]echo +(.+) (.*)$"
-  },
-  run = run
+    "^[/#!]echo +(.+)$",
+    "^[Ee]cho +(.+)$",
+  }, 
+  run = run 
 }
