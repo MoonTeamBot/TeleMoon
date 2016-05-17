@@ -40,7 +40,7 @@ chmod +x launch.sh
 
 ###Our team!
 
-[MAKAN]([Telegram](https://telegram.me/makan))
+[MAKAN](https://telegram.me/makan))
 
 [Dilan]([Telegram](https://telegram.me/dilan))
 
