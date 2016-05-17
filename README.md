@@ -38,13 +38,13 @@ chmod +x launch.sh
 
 * * *
 
-# Our team!
+###Our team!
 
-**[MAKAN]([Telegram](https://telegram.me/makan))
+[MAKAN]([Telegram](https://telegram.me/makan))
 
 [Dilan]([Telegram](https://telegram.me/dilan))
 
-[Parham]([Telegram](https://telegram.me/UnFriendlly))**
+[Parham]([Telegram](https://telegram.me/UnFriendlly))
 
 ###Our Telegram channels:
 
