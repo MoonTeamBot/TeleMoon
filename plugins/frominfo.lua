@@ -7,13 +7,13 @@ local function callback_reply(extra, success, result)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/sudo.webp", ok_cb, false)
-	elseif is_admin2(result.from.id) then
+	elseif is_admin1(result.from.id) then
 		userrank = "Admin ⭐⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/admin.webp", ok_cb, false)
-	elseif is_owner2(result.from.id, result.to.id) then
+	elseif is_owner(result.from.id, result.to.id) then
 		userrank = "Leader ⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/leader.webp", ok_cb, false)
-	elseif is_momod2(result.from.id, result.to.id) then
+	elseif is_momod(result.from.id, result.to.id) then
 		userrank = "Moderator ⭐"
 		send_document(org_chat_id,"umbrella/stickers/mod.webp", ok_cb, false)
 	elseif tonumber(result.from.id) == tonumber(our_id) then
@@ -181,13 +181,13 @@ local function callback_res(extra, success, result)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/sudo.webp", ok_cb, false)
-	elseif is_admin2(result.id) then
+	elseif is_admin1(result.id) then
 		userrank = "Admin ⭐⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/admin.webp", ok_cb, false)
-	elseif is_owner2(result.id, extra.chat2) then
+	elseif is_owner(result.id, extra.chat2) then
 		userrank = "Leader ⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/leader.webp", ok_cb, false)
-	elseif is_momod2(result.id, extra.chat2) then
+	elseif is_momod(result.id, extra.chat2) then
 		userrank = "Moderator ⭐"
 		send_document(org_chat_id,"umbrella/stickers/mod.webp", ok_cb, false)
 	elseif tonumber(result.id) == tonumber(our_id) then
@@ -281,13 +281,13 @@ local function callback_info(extra, success, result)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/sudo.webp", ok_cb, false)
-	elseif is_admin2(result.id) then
+	elseif is_admin1(result.id) then
 		userrank = "Admin ⭐⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/admin.webp", ok_cb, false)
-	elseif is_owner2(result.id, extra.chat2) then
+	elseif is_owner(result.id, extra.chat2) then
 		userrank = "Leader ⭐⭐"
 		send_document(org_chat_id,"umbrella/stickers/leader.webp", ok_cb, false)
-	elseif is_momod2(result.id, extra.chat2) then
+	elseif is_momod(result.id, extra.chat2) then
 		userrank = "Moderator ⭐"
 		send_document(org_chat_id,"umbrella/stickers/mod.webp", ok_cb, false)
 	elseif tonumber(result.id) == tonumber(our_id) then
@@ -448,7 +448,7 @@ local function run(msg, matches)
 			elseif is_sudo(msg) then
 				userrank = "Sudo ⭐⭐⭐⭐⭐"
 				send_document("chat#id"..msg.to.id,"umbrella/stickers/sudo.webp", ok_cb, false)
-			elseif is_admin(msg) then
+			elseif is_admin1(msg) then
 				userrank = "Admin ⭐⭐⭐"
 				send_document("chat#id"..msg.to.id,"umbrella/stickers/admin.webp", ok_cb, false)
 			elseif is_owner(msg) then
