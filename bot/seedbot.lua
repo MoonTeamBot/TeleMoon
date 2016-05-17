@@ -252,7 +252,7 @@ Amir
 Reza
 
 Our channe
-MoonTeam
+@MoonTeam
 ]],
     help_text_realm = [[
 Realm Commands:
