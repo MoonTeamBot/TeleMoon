@@ -6,7 +6,7 @@ local function run(msg, matches)
   if jdat.message then
   return jdat.message
   else
-     text = jdat.login..'\nFollowers: '..jdat.followers..'\nFollowings: '..jdat.following..'\nRepos: '..jdat.public_repos..'\nProfile URL: '..jdat.html_url..'\n\n @Hextor Team'
+     text = jdat.login..'\nFollowers: '..jdat.followers..'\nFollowings: '..jdat.following..'\nRepos: '..jdat.public_repos..'\nProfile URL: '..jdat.html_url..'\n\n @MoonTeam'
   local file = download_to_file(jdat.avatar_url,'Hextor.webp')
   send_document('chat#id'..msg.to.id,file,ok_cb,false)
   return text
