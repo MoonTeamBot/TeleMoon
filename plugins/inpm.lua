@@ -208,7 +208,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "Welcome to TeleSeed!\n\nTo get a list of TeleSeed groups use /chats or /chatlist for a document list of chats.\n\nTo get a new TeleSeed group, contact a support group:\n\nFor English support, use: /join English support\n\nFor Persian support, use: /join Persian support\n\nFor more information, check out our channels:\n\n@TeleseedCH [English]\n@Iranseed [Persian]\n\nThanks for using @TeleSeed!"
+		text = "Welcome to TeleMoon!\n\nTo get a list of TeleMoon groups use /chats or /chatlist for a document list of chats.\n\nTo get a new TeleMoon group, contact a support group:\n\nFor English support, use: /join English support\n\nFor Persian support, use: /join Persian support\n\nFor more information, check out our channel:\n\n@MoonTeam\n\nThanks for using @TeleMoon!"
      	return text
     end
 
@@ -251,6 +251,14 @@ return {
     "^[#!/](join) (%d+)$",
 	"^[#!/](join) (.*) (support)$",
     "^[#!/](kickme) (.*)$",
+        "^(help)$",
+	"^(pmhelp)$",
+	"^(superhelp)$",
+    "^(chats)$",
+    "^(chatlist)$",
+    "^(join) (%d+)$",
+	"^(join) (.*) (support)$",
+    "^(kickme) (.*)$",
     "^!!tgservice (chat_add_user)$",
     },
     run = run,
